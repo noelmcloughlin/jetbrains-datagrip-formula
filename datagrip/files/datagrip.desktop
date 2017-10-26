@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Jetbrains DataGrip
+Comment=JetBrains DataGrip (databases tool)
+Icon=/opt/datagrip/bin/datagrip.png
+Exec={{ home }}/{{ command }}
+Terminal=false
+Type=Application

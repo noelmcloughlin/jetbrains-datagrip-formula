@@ -1,0 +1,39 @@
+#Default Look Dictionary
+
+datagrip:
+  prefix: /usr/lib/jetbrains
+  tmpdir: /tmp/jetbrainstmp
+  symlink: /usr/bin/datagrip
+  symhome: /opt/jetbrains/datagrip
+  command: /bin/datagrip.sh
+  homes: /home
+  osflavour: linux
+
+  jetbrains:
+    #Default is DataGrip
+    product: DG 
+    edition:
+    uri: https://data.services.jetbrains.com/products/releases?latest=true&code=
+
+  dl:
+    archive_type: tar
+    opts: -s -L
+    interval: 60
+    retries: 1
+    source_url:
+    src_hashfile:
+    src_hashsum:
+    archive_name:
+    unpack_opts:
+
+  alt:
+    priority: 170
+    realhome: 
+    realcmd:
+
+  prefs:
+    user: undefined_user
+    importurl:
+    importdir:
+    myfile: datagrip-prefs.xml
+

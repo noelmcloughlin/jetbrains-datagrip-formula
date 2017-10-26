@@ -1,0 +1,8 @@
+name: DataGrip
+os: gnu-linux, MacOS, Windows
+os_family: RedHat, Debian, Suse, FreeBSD, Archlinux, MacOS
+version: 201710
+release: 1
+minimum_version: 2016.3
+summary: Formula for installing Jetbrains DataGrip
+description: Formula for installing Jetbrains Datagrip tool for Database designers
