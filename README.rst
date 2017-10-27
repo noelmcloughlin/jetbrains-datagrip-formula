@@ -18,21 +18,26 @@ Available states
 ``datagrip``
 ------------
 
-Downloads the archive from Jetbrains website, unpacks locally and installs the Tool on the Operating System.  Places a environment profile in /etc/profile.d - this way the PATH is set correctly for all system users.
+Downloads the archive from Jetbrains website, unpacks locally and installs the Tool on the Operating System.
 
 .. note::
 
 This formula automatically installs latest Jetbrains release. This behaviour may be overridden in pillars.
 
-``datagrip.alternatives``
-------------
-Full support for debian alternatives in supported Linux distributions (i.e. not Archlinux, Windows, MacOS).
 
 ``datagrip.developer``
 ------------
-Optionally get preferences file from url/share and place in 'user' (pillar) home directory for import.  Creates a Desktop shortcut on Linux and MacOS.
+Create Desktop shortcuts. Optionally retrieve settings file from url/share to 'user' home directory for import/export support.
+
+
+``datagrip.linuxenv``
+------------
+On Linux, the PATH is set for all system users by adding software profile to /etc/profile.d/ directory.  Full support for debian linuxenv in supported Linux distributions (i.e. not Archlinux).
+
+.. note::
+
+The linux-linuxenv 'priority' pillar value must be updated for each newly installed release/editions.
 
 
 Please see the pillar.example for configuration.
-
 Tested on Linux (Ubuntu, Fedora, Arch, and Suse), MacOS. Not verified on Windows OS.

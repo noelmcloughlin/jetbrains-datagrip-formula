@@ -10,7 +10,7 @@ datagrip-remove-prev-archive:
 datagrip-install-dir:
   file.directory:
     - names:
-      - '{{ datagrip.alt.realhome }}'
+      - '{{ datagrip.jetbrains.realhome }}'
       - '{{ datagrip.tmpdir }}'
 {% if grains.os not in ('MacOS', 'Windows') %}
       - '{{ datagrip.prefix }}'
@@ -35,7 +35,7 @@ datagrip-download-archive:
 {% if grains.os not in ('MacOS') %}
 datagrip-unpacked-dir:
   file.directory:
-    - name: '{{ datagrip.alt.realhome }}'
+    - name: '{{ datagrip.jetbrains.realhome }}'
     - user: root
     - group: root
     - mode: 755
@@ -73,11 +73,11 @@ datagrip-package-install:
 {% else %}
   archive.extracted:
     - source: 'file://{{ datagrip.tmpdir }}/{{ datagrip.dl.archive_name }}'
-    - name: '{{ datagrip.alt.realhome }}'
+    - name: '{{ datagrip.jetbrains.realhome }}'
     - archive_format: {{ datagrip.dl.archive_type }}
        {% if grains['saltversioninfo'] < [2016, 11, 0] %}
     - tar_options: {{ datagrip.dl.unpack_opts }}
-    - if_missing: '{{ datagrip.alt.realcmd }}'
+    - if_missing: '{{ datagrip.jetbrains.realcmd }}'
        {% else %}
     - options: {{ datagrip.dl.unpack_opts }}
        {% endif %}
@@ -110,7 +110,7 @@ datagrip-remove-archive:
 datagrip-home-symlink:
   file.symlink:
     - name: '{{ datagrip.symhome }}'
-    - target: '{{ datagrip.alt.realhome }}'
+    - target: '{{ datagrip.jetbrains.realhome }}'
     - force: True
     - onchanges:
       - archive: datagrip-package-install

@@ -1,12 +1,13 @@
 datagrip:
-  jetbrains:
-    #Default edition is None (30 day trial)
-    edition: 
   dl:
     retries: 1
     interval: 30
-  alt:
-    priority: 170
+  linux:
+    altpriority: 170
   prefs:
     user: undefined_user
+    #See https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000132064-How-can-I-import-data-sources-from-DataGrip-to-IDEA-
+    xmlurl:
+    xmldir:
+    xmlfile: datagrip-settings.xml
  

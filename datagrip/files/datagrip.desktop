@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Name=Jetbrains DataGrip
 Comment=JetBrains DataGrip (databases tool)
-Icon=/opt/datagrip/bin/datagrip.png
+Icon={{ home }}/{{ command.split('.')[0] }}.png
 Exec={{ home }}/{{ command }}
 Terminal=false
 Type=Application

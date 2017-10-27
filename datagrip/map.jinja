@@ -13,10 +13,9 @@
                     'osflavour': 'mac',
         },
         'Windows':{ 'prefix' : 'C:\\Program files',
+                    'tmpdir' : 'C:\\temp\\jetbrainstmp\\',
                     'homes'  : 'C:\\Users',
                     'command': '\\datagrip.exe',
-                    'symlink': 'C:\\datagrip\\datagrip',
-                    'symhome': 'C:\\datagrip',
                     'osflavour': 'windows',
         },
   }
@@ -45,10 +44,9 @@
 {% else %}
   {% set _home = '{0}/datagrip-{1}'.format( ide.prefix, jdata[ pcode ][0]['version']) %}
 {% endif %}
+{% do ide.jetbrains.update({ 'realhome': _home, 'realcmd': _home ~ ide.command },) %}
 
-{% do ide.alt.update({ 'realhome': _home, 'realcmd': _home ~ ide.command },) %}
-
-# Set Jetbrains IDE download details
+# Set download source
 {%- set src_hashurl = jdata[ pcode ][0]['downloads'][ ide.osflavour ]['checksumLink'] %}
 {%- set src_hashsum  = salt['cmd.run']('curl -s {0}'.format( src_hashurl )).split(' ')[0] %}
 {% do ide.dl.update({
@@ -59,6 +57,5 @@
        'unpack_opts' : ' -z -C ' ~  _home ~ ' --strip-components=1' },
     )
 %}
-
 {% set datagrip = ide %}
 
