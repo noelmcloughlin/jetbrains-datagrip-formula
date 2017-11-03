@@ -12,7 +12,7 @@ datagrip-install-dir:
     - names:
       - '{{ datagrip.jetbrains.realhome }}'
       - '{{ datagrip.tmpdir }}'
-{% if grains.os not in ('MacOS', 'Windows') %}
+{% if grains.os not in ('MacOS', 'Windows',) %}
       - '{{ datagrip.prefix }}'
       - '{{ datagrip.symhome }}'
     - user: root
@@ -32,7 +32,7 @@ datagrip-download-archive:
         interval: {{ datagrip.dl.interval }}
       {% endif %}
 
-{% if grains.os not in ('MacOS') %}
+{% if grains.os not in ('MacOS',) %}
 datagrip-unpacked-dir:
   file.directory:
     - name: '{{ datagrip.jetbrains.realhome }}'
@@ -48,7 +48,7 @@ datagrip-unpacked-dir:
 {%- if datagrip.dl.src_hashsum %}
    # Check local archive using hashstring for older Salt / MacOS.
    # (see https://github.com/saltstack/salt/pull/41914).
-  {%- if grains['saltversioninfo'] <= [2016, 11, 6] or grains.os in ('MacOS') %}
+  {%- if grains['saltversioninfo'] <= [2016, 11, 6] or grains.os in ('MacOS',) %}
 datagrip-check-archive-hash:
    module.run:
      - name: file.check_hash
@@ -100,9 +100,9 @@ datagrip-remove-archive:
       - '{{ datagrip.tmpdir }}/{{ datagrip.dl.archive_name }}'
       - '{{ datagrip.tmpdir }}/{{ datagrip.dl.archive_name }}.sha256'
     - onchanges:
-{%- if grains.os in ('Windows') %}
+{%- if grains.os in ('Windows',) %}
       - pkg: datagrip-package-install
-{%- elif grains.os in ('MacOS') %}
+{%- elif grains.os in ('MacOS',) %}
       - macpackage: datagrip-package-install
 {% else %}
       - archive: datagrip-package-install

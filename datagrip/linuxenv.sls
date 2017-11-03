@@ -1,6 +1,6 @@
 {% from "datagrip/map.jinja" import datagrip with context %}
 
-{% if grains.os not in ('MacOS', 'Windows') %}
+{% if grains.os not in ('MacOS', 'Windows',) %}
 
 datagrip-home-symlink:
   file.symlink:
@@ -22,7 +22,8 @@ datagrip-config:
       home: '{{ datagrip.jetbrains.home }}/datagrip'
 
   # Debian alternatives
-  {% if grains.os_family not in ('Arch') %}
+  {% if datagrip.linux.altpriority > 0 %}
+     {% if grains.os_family not in ('Arch',) %}
 
 # Add datagriphome to alternatives system
 datagrip-home-alt-install:
@@ -57,6 +58,7 @@ datagrip-alt-set:
     - onchanges:
       - alternatives: datagrip-alt-install
 
+      {% endif %}
   {% endif %}
 
 {% endif %}

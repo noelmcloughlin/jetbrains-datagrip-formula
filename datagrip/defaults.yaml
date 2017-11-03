@@ -25,11 +25,12 @@ datagrip:
     src_hashsum:
 
   linux:
-    altpriority: 170
     symlink: /usr/bin/datagrip
+    #debian alternatives is disabled by default. Activated via pillar value.
+    altpriority: 0
 
   prefs:
-    user: undefined_user
+    user:
     #See https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000132064-How-can-I-import-data-sources-from-DataGrip-to-IDEA-
     xmlurl:
     xmldir:

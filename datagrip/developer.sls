@@ -1,6 +1,6 @@
 {% from "datagrip/map.jinja" import datagrip with context %}
 
-{% if datagrip.prefs.user not in (None, 'undfined', 'undefined_user') %}
+{% if datagrip.prefs.user not in (None, 'undefined_user', 'undefined', '',) %}
 
   {% if grains.os == 'MacOS' %}
 datagrip-desktop-shortcut-clean:
@@ -33,7 +33,7 @@ datagrip-desktop-shortcut-add:
     - name: {{ datagrip.homes }}/{{ datagrip.prefs.user }}/Desktop/datagrip{{ datagrip.jetbrains.edition }}.desktop
     - user: {{ datagrip.prefs.user }}
     - makedirs: True
-      {% if grains.os_family in ('Suse') %} 
+      {% if grains.os_family in ('Suse',) %} 
     - group: users
       {% else %}
     - group: {{ datagrip.prefs.user }}
@@ -58,9 +58,9 @@ datagrip-prefs-importfile:
     - source: {{ datagrip.prefs.xmldir }}/{{ datagrip.prefs.xmlfile }}
     - user: {{ datagrip.prefs.user }}
     - makedirs: True
-        {% if grains.os_family in ('Suse') %}
+        {% if grains.os_family in ('Suse',) %}
     - group: users
-        {% elif grains.os not in ('MacOS') %}
+        {% elif grains.os not in ('MacOS',) %}
         #inherit Darwin ownership
     - group: {{ datagrip.prefs.user }}
         {% endif %}
