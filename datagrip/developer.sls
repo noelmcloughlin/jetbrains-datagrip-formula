@@ -35,7 +35,8 @@ datagrip-desktop-shortcut-add:
     - makedirs: True
       {% if grains.os_family in ('Suse',) %} 
     - group: users
-      {% else %}
+      {% elif grains.os not in ('MacOS',) %}
+        #inherit Darwin group ownership
     - group: {{ datagrip.prefs.user }}
       {% endif %}
     - mode: 644

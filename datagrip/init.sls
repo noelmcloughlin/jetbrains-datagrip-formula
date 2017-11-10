@@ -20,6 +20,7 @@ datagrip-install-dir:
     - mode: 755
 {% endif %}
     - makedirs: True
+    - clean: True
     - require_in:
       - datagrip-download-archive
 

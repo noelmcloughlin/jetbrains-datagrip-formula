@@ -1,7 +1,7 @@
 #Default Look Dictionary
 
 datagrip:
-  prefix: /usr/lib/jetbrains
+  prefix: /usr/local/jetbrains
   tmpdir: /tmp/jetbrainstmp
   command: /bin/datagrip.sh
   homes: /home
