@@ -31,6 +31,7 @@ datagrip:
 
   prefs:
     user:
+    group:
     #See https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000132064-How-can-I-import-data-sources-from-DataGrip-to-IDEA-
     xmlurl:
     xmldir:
