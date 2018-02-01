@@ -5,9 +5,10 @@ datagrip:
   linux:
     #Enable Debian alternatives feature by setting nonzero 'altpriority' value here.
     #Increase same value on each subsequent software installation.
-    #altpriority: 170
+    altpriority: 0
   prefs:
     user: undefined_user
+    #group:
     #See https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000132064-How-can-I-import-data-sources-from-DataGrip-to-IDEA-
     xmlurl:
     xmldir:
