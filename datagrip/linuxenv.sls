@@ -21,9 +21,8 @@ datagrip-config:
     - context:
       home: '{{ datagrip.jetbrains.home }}/datagrip'
 
-  # Debian alternatives
-  {% if datagrip.linux.altpriority > 0 %}
-     {% if grains.os_family not in ('Arch',) %}
+  # Linux alternatives
+  {% if datagrip.linux.altpriority > 0 and grains.os_family not in ('Arch',) %}
 
 # Add datagriphome to alternatives system
 datagrip-home-alt-install:
@@ -35,12 +34,12 @@ datagrip-home-alt-install:
 
 datagrip-home-alt-set:
   alternatives.set:
-    - name: datagriphome
+    - name: datagrip-home
     - path: {{ datagrip.jetbrains.realhome }}
     - onchanges:
       - alternatives: datagrip-home-alt-install
 
-# Add intelli to alternatives system
+# Add to alternatives system
 datagrip-alt-install:
   alternatives.install:
     - name: datagrip
@@ -58,7 +57,6 @@ datagrip-alt-set:
     - onchanges:
       - alternatives: datagrip-alt-install
 
-      {% endif %}
   {% endif %}
 
 {% endif %}
