@@ -12,7 +12,7 @@ datagrip:
     uri: https://data.services.jetbrains.com/products/releases?latest=true&code=
     #See https://www.jetbrains.com/datagrip/features/
     #Default is DataGrip
-    product: DG 
+    product: DG
     edition:
 
   dl:
@@ -28,6 +28,11 @@ datagrip:
     symlink: /usr/bin/datagrip
     #debian alternatives is disabled by default. Activated via pillar value.
     altpriority: 0
+
+    #On freedesktop.org-compliant desktops, enable Icon on Linux launchers.
+    #Place a .desktop file in e.g. /usr/share/applications
+    install_desktop_file: True
+    desktop_file: /usr/share/applications/datagrip.desktop
 
   prefs:
     user:

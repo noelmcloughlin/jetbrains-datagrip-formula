@@ -59,4 +59,17 @@ datagrip-alt-set:
 
   {% endif %}
 
+  {% if datagrip.linux.install_desktop_file %}
+datagrip-global-desktop-file:
+  file.managed:
+    - name: {{ datagrip.linux.desktop_file }}
+    - source: salt://datagrip/files/datagrip.desktop
+    - template: jinja
+    - context:
+      home: {{ datagrip.jetbrains.realhome }}
+      command: {{ datagrip.command }}
+      edition: {{ datagrip.jetbrains.edition }}
+    - onlyif: test -f {{ datagrip.jetbrains.realhome }}/{{ datagrip.command }}
+  {% endif %}
+
 {% endif %}
