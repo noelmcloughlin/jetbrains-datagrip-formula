@@ -14,7 +14,6 @@ datagrip-install-dir:
       - '{{ datagrip.tmpdir }}'
 {% if grains.os not in ('MacOS', 'Windows',) %}
       - '{{ datagrip.prefix }}'
-      - '{{ datagrip.symhome }}'
     - user: root
     - group: root
     - mode: 755
@@ -107,17 +106,5 @@ datagrip-remove-archive:
       - macpackage: datagrip-package-install
 {% else %}
       - archive: datagrip-package-install
-
-# Update system profile with PATH
-datagrip-config:
-  file.managed:
-    - name: /etc/profile.d/datagrip.sh
-    - source: salt://datagrip/files/datagrip.sh
-    - template: jinja
-    - mode: 644
-    - user: root
-    - group: root
-    - context:
-      datagrip_home: '{{ datagrip.symhome }}'
 
 {% endif %}
