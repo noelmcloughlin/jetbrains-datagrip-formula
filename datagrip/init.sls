@@ -108,14 +108,6 @@ datagrip-remove-archive:
 {% else %}
       - archive: datagrip-package-install
 
-datagrip-home-symlink:
-  file.symlink:
-    - name: '{{ datagrip.symhome }}'
-    - target: '{{ datagrip.jetbrains.realhome }}'
-    - force: True
-    - onchanges:
-      - archive: datagrip-package-install
-
 # Update system profile with PATH
 datagrip-config:
   file.managed:
