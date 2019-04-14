@@ -31,6 +31,9 @@ datagrip-home-alt-install:
     - link: '{{ datagrip.jetbrains.home }}/datagrip'
     - path: '{{ datagrip.jetbrains.realhome }}'
     - priority: {{ datagrip.linux.altpriority }}
+    - retry:
+        attempts: 2
+        until: True
 
 datagrip-home-alt-set:
   alternatives.set:
@@ -38,6 +41,9 @@ datagrip-home-alt-set:
     - path: {{ datagrip.jetbrains.realhome }}
     - onchanges:
       - alternatives: datagrip-home-alt-install
+    - retry:
+        attempts: 2
+        until: True
 
 # Add to alternatives system
 datagrip-alt-install:
@@ -49,6 +55,9 @@ datagrip-alt-install:
     - require:
       - alternatives: datagrip-home-alt-install
       - alternatives: datagrip-home-alt-set
+    - retry:
+        attempts: 2
+        until: True
 
 datagrip-alt-set:
   alternatives.set:
@@ -56,6 +65,9 @@ datagrip-alt-set:
     - path: {{ datagrip.jetbrains.realcmd }}
     - onchanges:
       - alternatives: datagrip-alt-install
+    - retry:
+        attempts: 2
+        until: True
 
   {% endif %}
 

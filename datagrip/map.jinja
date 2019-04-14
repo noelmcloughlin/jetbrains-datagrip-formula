@@ -23,10 +23,9 @@
 
 # Get dynamic release metadata
 {%- set pcode = ide.jetbrains.product %}
-{%- set pcode = pcode ~ ide.jetbrains.edition if ide.jetbrains.edition else pcode %}
-{% if grains.os == 'MacOS' or ide.jetbrains.edition in ('None',) %}
-   {%- set pcode = ide.jetbrains.product %}
-{% endif %}
+{%- if grains.os != 'MacOS' %}
+    {%- set pcode = pcode ~ ide.jetbrains.edition if ide.jetbrains.edition else pcode %}
+{%- endif %}
 {%- set jdata = salt['cmd.run']('curl {0} {1}{2}'.format(ide.dl.opts, ide.jetbrains.uri, pcode))|load_yaml %}
 
 # Extract download details
