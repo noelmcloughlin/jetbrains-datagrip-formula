@@ -16,9 +16,9 @@ datagrip-desktop-shortcut-add:
     - mode: 755
     - template: jinja
     - context:
-      user: {{ datagrip.prefs.user }}
-      homes: {{ datagrip.homes }}
-      edition: {{ datagrip.jetbrains.edition }}
+      user: {{ datagrip.prefs.user|json }}
+      homes: {{ datagrip.homes|json }}
+      edition: {{ datagrip.jetbrains.edition|json }}
     - onlyif: test "`uname`" = "Darwin"
   cmd.run:
     - name: /tmp/mac_shortcut.sh {{ datagrip.jetbrains.edition }}
@@ -43,9 +43,8 @@ datagrip-desktop-shortcut-install:
     - template: jinja
     - onlyif: test -f {{ datagrip.jetbrains.realcmd }}
     - context:
-      home: {{ datagrip.jetbrains.realhome }}
-      command: {{ datagrip.command }}
-
+      home: {{ datagrip.jetbrains.realhome|json }}
+      command: {{ datagrip.command|json }}
 
   {% if datagrip.prefs.xmlurl or datagrip.prefs.xmldir %}
 

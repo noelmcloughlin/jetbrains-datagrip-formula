@@ -19,7 +19,7 @@ datagrip-config:
     - user: root
     - group: root
     - context:
-      home: '{{ datagrip.jetbrains.home }}/datagrip'
+      home: '{{ datagrip.jetbrains.home|json }}/datagrip'
 
   # Linux alternatives
   {% if datagrip.linux.altpriority > 0 and grains.os_family not in ('Arch',) %}
@@ -66,9 +66,9 @@ datagrip-global-desktop-file:
     - source: salt://datagrip/files/datagrip.desktop
     - template: jinja
     - context:
-      home: {{ datagrip.jetbrains.realhome }}
-      command: {{ datagrip.command }}
-      edition: {{ datagrip.jetbrains.edition }}
+      home: {{ datagrip.jetbrains.realhome|json }}
+      command: {{ datagrip.command|json }}
+      edition: {{ datagrip.jetbrains.edition|json }}
     - onlyif: test -f {{ datagrip.jetbrains.realhome }}/{{ datagrip.command }}
   {% endif %}
 
