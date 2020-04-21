@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 # vim: ft=sls
 
+    {%- if grains.kernel|lower in ('linux', 'darwin',) %}
+
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import datagrip with context %}
 
-    {%- if grains.kernel|lower in ('linux', 'darwin',) %}
-
 include:
-  - {{ '.macapp' if datagrip.pkg.use_upstream_macapp else '.archive' }}
-  - .config
-  - .linuxenv
+  - {{ '.macapp' if datagrip.pkg.use_upstream_macapp else '.archive' }}.clean
+  - .config.clean
+  - .linuxenv.clean
 
     {%- else %}
 
