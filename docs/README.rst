@@ -1,7 +1,7 @@
 .. _readme:
 
 datagrip-formula
-============
+================
 
 |img_travis| |img_sr|
 
