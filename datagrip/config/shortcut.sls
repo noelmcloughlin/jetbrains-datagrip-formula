@@ -28,7 +28,7 @@ datagrip-config-file-file-managed-desktop-shortcut_file:
     - template: jinja
     - context:
         appname: {{ datagrip.pkg.name }}
-        edition: {{ datagrip.edition|json }}
+        edition: {{ '' if 'edition' not in datagrip else datagrip.edition|json }}
         command: {{ datagrip.command|json }}
               {%- if datagrip.pkg.use_upstream_macapp %}
         path: {{ datagrip.pkg.macapp.path }}

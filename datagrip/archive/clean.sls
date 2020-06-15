@@ -9,4 +9,4 @@ datagrip-package-archive-clean-file-absent:
   file.absent:
     - names:
       - {{ datagrip.pkg.archive.path }}
-      - /usr/local/jetbrains/datagrip-{{ datagrip.edition }}-*
+      - /usr/local/jetbrains/datagrip-*
