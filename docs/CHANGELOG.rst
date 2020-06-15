@@ -2,6 +2,28 @@
 Changelog
 =========
 
+`1.0.1 <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/compare/v1.0.0...v1.0.1>`_ (2020-06-15)
+--------------------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **edition:** better edition jinja code (\ `932c8d2 <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/commit/932c8d2f3733eec2627c333d1e02d992f4771545>`_\ )
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **kitchen+travis:** add new platforms [skip ci] (\ `f0e3519 <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/commit/f0e3519c161d2b65393fff70fe9cde1b5d98d3d3>`_\ )
+* **travis:** add notifications => zulip [skip ci] (\ `a6bf0b6 <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/commit/a6bf0b6d0464a8376a88ebcfbb1845a01d9175c8>`_\ )
+
+Documentation
+^^^^^^^^^^^^^
+
+
+* **readme:** format update (\ `d1ca6b2 <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/commit/d1ca6b240988abe5fd34120f90fbb7e13957197b>`_\ )
+
 1.0.0 (2020-05-14)
 ------------------
 
