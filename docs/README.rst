@@ -55,7 +55,7 @@ Available states
    :local:
 
 ``datagrip``
-^^^^^^^^^^
+^^^^^^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
@@ -64,28 +64,28 @@ manages Datagrip configuration file and then
 configures the development environment.
 
 ``datagrip.archive``
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 This state will install Datagrip from archive only.
 
 ``datagrip.macapp``
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 This state will install Datagrip from source only.
 
 ``datagrip.config``
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 This state will configure npmrc and/or environment and has a dependency on ``datagrip.install``
 via include list.
 
 ``datagrip.linuxenv``
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 This state will install some Datagrip linux-alternatives on GNU/Linux.
 
 ``datagrip.clean``
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
@@ -94,25 +94,25 @@ removes the configuration file and
 then uninstalls the package.
 
 ``datagrip.config.clean``
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove the configuration of Datagrip and has a
 dependency on ``datagrip.package.clean`` via include list.
 
 ``datagrip.archive.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove Datagrip package and has a dependency on
 ``datagrip.config.clean`` via include list.
 
 ``datagrip.macapp.clean``
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove Datagrip package and has a dependency on
 ``datagrip.config.clean`` via include list.
 
 ``datagrip.linuxenv.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove Datagrip linux-alternatives on GNU/Linux.
 
