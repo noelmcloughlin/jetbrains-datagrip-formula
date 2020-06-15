@@ -55,7 +55,7 @@ datagrip-macos-app-install-macpackage:
     - template: jinja
     - context:
       appname: {{ datagrip.pkg.name }}
-      edition: {{ datagrip.edition }}
+      edition: {{ '' if 'edition' not in datagrip else datagrip.edition }}
       user: {{ datagrip.identity.user }}
       homes: {{ datagrip.dir.homes }}
   cmd.run:
