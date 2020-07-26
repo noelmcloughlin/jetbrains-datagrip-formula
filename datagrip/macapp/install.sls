@@ -14,7 +14,7 @@ datagrip-macos-app-install-curl:
   pkg.installed:
     - name: curl
   cmd.run:
-    - name: curl -Lo {{ datagrip.dir.tmp }}/datagrip-{{ datagrip.version }} {{ datagrip.pkg.macapp.source }}
+    - name: curl -Lo {{ datagrip.dir.tmp }}/datagrip-{{ datagrip.version }} "{{ datagrip.pkg.macapp.source }}"
     - unless: test -f {{ datagrip.dir.tmp }}/datagrip-{{ datagrip.version }}
     - require:
       - file: datagrip-macos-app-install-curl
