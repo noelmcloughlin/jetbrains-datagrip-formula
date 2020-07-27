@@ -26,7 +26,7 @@ datagrip-config-clean-file-absent:
                {%- if grains.kernel|lower == 'linux' %}
       - {{ datagrip.linux.desktop_file }}
                {%- elif grains.os == 'MacOS' %}
-      - {{ datagrip.dir.homes }}/{{ datagrip.identity.user }}/Desktop/{{ datagrip.pkg.name }}{{ '' if 'edition' not in datagrip else '\ %sE'|format(datagrip.edition) }}*  # noqa 204
+      - {{ datagrip.dir.homes }}/{{ datagrip.identity.user }}/Desktop/{{ datagrip.pkg.name }}*{{ datagrip.edition }}*
                {%- endif %}
     - require:
       - sls: {{ sls_package_clean }}

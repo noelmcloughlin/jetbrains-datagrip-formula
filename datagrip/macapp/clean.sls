@@ -10,7 +10,11 @@ datagrip-macos-app-clean-files:
   file.absent:
     - names:
       - {{ datagrip.dir.tmp }}
-      - /Applications/{{ datagrip.pkg.name }}{{ '' if 'edition' not in datagrip else '\ %sE'|format(datagrip.edition) }}.app   # noqa 204
+                  {%- if grains.os == 'MacOS' %}
+      - {{ datagrip.dir.path }}/{{ datagrip.pkg.name }}*{{ datagrip.edition }}*.app
+                  {%- else %}
+      - {{ datagrip.dir.path }}
+                  {%- endif %}
 
     {%- else %}
 

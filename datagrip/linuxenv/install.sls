@@ -10,8 +10,8 @@
 datagrip-linuxenv-home-file-symlink:
   file.symlink:
     - name: /opt/datagrip
-    - target: {{ datagrip.pkg.archive.path }}
-    - onlyif: test -d '{{ datagrip.pkg.archive.path }}'
+    - target: {{ datagrip.dir.path }}
+    - onlyif: test -d '{{ datagrip.dir.path }}'
     - force: True
 
         {% if datagrip.linux.altpriority|int > 0 and grains.os_family not in ('Arch',) %}
@@ -20,14 +20,14 @@ datagrip-linuxenv-home-alternatives-install:
   alternatives.install:
     - name: datagriphome
     - link: /opt/datagrip
-    - path: {{ datagrip.pkg.archive.path }}
+    - path: {{ datagrip.dir.path }}
     - priority: {{ datagrip.linux.altpriority }}
     - retry: {{ datagrip.retry_option|json }}
 
 datagrip-linuxenv-home-alternatives-set:
   alternatives.set:
     - name: datagriphome
-    - path: {{ datagrip.pkg.archive.path }}
+    - path: {{ datagrip.dir.path }}
     - onchanges:
       - alternatives: datagrip-linuxenv-home-alternatives-install
     - retry: {{ datagrip.retry_option|json }}
@@ -36,7 +36,7 @@ datagrip-linuxenv-executable-alternatives-install:
   alternatives.install:
     - name: datagrip
     - link: {{ datagrip.linux.symlink }}
-    - path: {{ datagrip.pkg.archive.path }}/{{ datagrip.command }}
+    - path: {{ datagrip.dir.path }}/{{ datagrip.command }}
     - priority: {{ datagrip.linux.altpriority }}
     - require:
       - alternatives: datagrip-linuxenv-home-alternatives-install
@@ -46,7 +46,7 @@ datagrip-linuxenv-executable-alternatives-install:
 datagrip-linuxenv-executable-alternatives-set:
   alternatives.set:
     - name: datagrip
-    - path: {{ datagrip.pkg.archive.path }}/{{ datagrip.command }}
+    - path: {{ datagrip.dir.path }}/{{ datagrip.command }}
     - onchanges:
       - alternatives: datagrip-linuxenv-executable-alternatives-install
     - retry: {{ datagrip.retry_option|json }}

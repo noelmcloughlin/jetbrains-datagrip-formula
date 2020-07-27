@@ -49,17 +49,21 @@ datagrip-macos-app-install-macpackage:
     - onchanges:
       - cmd: datagrip-macos-app-install-curl
   file.managed:
-    - name: /tmp/mac_shortcut.sh
-    - source: salt://datagrip/files/mac_shortcut.sh
+    - name: /tmp/mac_shortcut.sh.jinja
+    - source: salt://datagrip/files/mac_shortcut.sh.jinja
     - mode: 755
     - template: jinja
     - context:
-      appname: {{ datagrip.pkg.name }}
-      edition: {{ '' if 'edition' not in datagrip else datagrip.edition }}
+      appname: {{ datagrip.dir.path }}/{{ datagrip.pkg.name }}
+      edition: {{ '' if not datagrip.edition else ' %sE'|format(datagrip.edition) }}
       user: {{ datagrip.identity.user }}
       homes: {{ datagrip.dir.homes }}
+    - require:
+      - macpackage: datagrip-macos-app-install-macpackage
+    - onchanges:
+      - macpackage: datagrip-macos-app-install-macpackage
   cmd.run:
-    - name: /tmp/mac_shortcut.sh
+    - name: /tmp/mac_shortcut.sh.jinja
     - runas: {{ datagrip.identity.user }}
     - require:
       - file: datagrip-macos-app-install-macpackage
