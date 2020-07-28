@@ -2,6 +2,37 @@
 Changelog
 =========
 
+`1.0.2 <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/compare/v1.0.1...v1.0.2>`_ (2020-07-28)
+--------------------------------------------------------------------------------------------------------------------
+
+Bug Fixes
+^^^^^^^^^
+
+
+* **cmd.run:** wrap url in quotes (zsh) (\ `bb6d8ed <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/commit/bb6d8ed980a13c50a51def3a4dac54370232e6d6>`_\ )
+* **macos:** correct syntax (\ `88c68f0 <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/commit/88c68f02b110fd71f052b87f6b7b43edce8726c1>`_\ )
+* **macos:** do not create shortcut file (\ `f4e2def <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/commit/f4e2defa3d95f7939d7d04165ede52ba41c904c0>`_\ )
+* **macos:** do not create shortcut file (\ `70e10f7 <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/commit/70e10f7e2fd8c3e9f8cc22d724d642debf920eb8>`_\ )
+* **macos:** do not create shortcut file (\ `94f39df <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/commit/94f39df36aed9d11d8de499e010e63fc4c954e53>`_\ )
+
+Code Refactoring
+^^^^^^^^^^^^^^^^
+
+
+* **jetbrains:** align all jetbrains formulas (\ `55cc389 <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/commit/55cc3898ad8fab2f40749dc2a75575129ef38f6b>`_\ )
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **kitchen:** use ``saltimages`` Docker Hub where available [skip ci] (\ `e6cc07d <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/commit/e6cc07d11f4f34562b7cee32c29d81cf42fadfc7>`_\ )
+
+Styles
+^^^^^^
+
+
+* **libtofs.jinja:** use Black-inspired Jinja formatting [skip ci] (\ `a3cae55 <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/commit/a3cae55620d2d115052c651a549768ac6bfae91b>`_\ )
+
 `1.0.1 <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/compare/v1.0.0...v1.0.1>`_ (2020-06-15)
 --------------------------------------------------------------------------------------------------------------------
 
