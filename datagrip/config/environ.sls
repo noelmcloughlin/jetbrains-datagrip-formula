@@ -27,11 +27,13 @@ datagrip-config-file-file-managed-environ_file:
     - makedirs: True
     - template: jinja
     - context:
-              {%- if datagrip.pkg.use_upstream_macapp %}
-        path: '/Applications/{{ datagrip.pkg.name }}{{ '' if 'edition' not in datagrip else '\ %sE'|format(datagrip.edition) }}.app/Contents/MacOS'  # noqa 204
-              {%- else %}
-        path: {{ datagrip.pkg.archive.path }}/bin
-              {%- endif %}
-        environ: {{ datagrip.environ|json }}
+      environ: {{ datagrip.environ|json }}
+                      {%- if datagrip.pkg.use_upstream_macapp %}
+      edition:  {{ '' if not datagrip.edition else ' %sE'|format(datagrip.edition) }}.app/Contents/MacOS
+      appname: {{ datagrip.dir.path }}/{{ datagrip.pkg.name }}
+                      {%- else %}
+      edition: ''
+      appname: {{ datagrip.dir.path }}/bin
+                      {%- endif %}
     - require:
       - sls: {{ sls_package_install }}

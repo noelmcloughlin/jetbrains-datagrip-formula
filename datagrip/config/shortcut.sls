@@ -5,19 +5,15 @@
 {%- from tplroot ~ "/map.jinja" import datagrip with context %}
 {%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
 
-{%- if datagrip.linux.install_desktop_file and grains.os not in ('MacOS',) %}
-       {%- if datagrip.pkg.use_upstream_macapp %}
-           {%- set sls_package_install = tplroot ~ '.macapp.install' %}
-       {%- else %}
-           {%- set sls_package_install = tplroot ~ '.archive.install' %}
-       {%- endif %}
+{%- if datagrip.shortcut.install and grains.kernel|lower == 'linux' %}
+    {%- set sls_package_install = tplroot ~ '.archive.install' %}
 
 include:
   - {{ sls_package_install }}
 
 datagrip-config-file-file-managed-desktop-shortcut_file:
   file.managed:
-    - name: {{ datagrip.linux.desktop_file }}
+    - name: {{ datagrip.shortcut.file }}
     - source: {{ files_switch(['shortcut.desktop.jinja'],
                               lookup='datagrip-config-file-file-managed-desktop-shortcut_file'
                  )
@@ -27,16 +23,15 @@ datagrip-config-file-file-managed-desktop-shortcut_file:
     - makedirs: True
     - template: jinja
     - context:
-        appname: {{ datagrip.pkg.name }}
-        edition: {{ '' if 'edition' not in datagrip else datagrip.edition|json }}
-        command: {{ datagrip.command|json }}
-              {%- if datagrip.pkg.use_upstream_macapp %}
-        path: {{ datagrip.pkg.macapp.path }}
-    - onlyif: test -f "{{ datagrip.pkg.macapp.path }}/{{ datagrip.command }}"
-              {%- else %}
-        path: {{ datagrip.pkg.archive.path }}
-    - onlyif: test -f {{ datagrip.pkg.archive.path }}/{{ datagrip.command }}
-              {%- endif %}
+      command: {{ datagrip.command|json }}
+                        {%- if grains.os == 'MacOS' %}
+      edition: {{ '' if 'edition' not in datagrip else datagrip.edition|json }}
+      appname: {{ datagrip.dir.path }}/{{ datagrip.pkg.name }}
+                        {%- else %}
+      edition: ''
+      appname: {{ datagrip.dir.path }}
+    - onlyif: test -f "{{ datagrip.dir.path }}/{{ datagrip.command }}"
+                        {%- endif %}
     - require:
       - sls: {{ sls_package_install }}
 

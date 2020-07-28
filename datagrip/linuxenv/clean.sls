@@ -11,21 +11,21 @@ datagrip-linuxenv-home-file-absent:
   file.absent:
     - names:
       - /opt/datagrip
-      - {{ datagrip.pkg.archive.path }}
+      - {{ datagrip.dir.path }}
 
         {% if datagrip.linux.altpriority|int > 0 and grains.os_family not in ('Arch',) %}
 
 datagrip-linuxenv-home-alternatives-clean:
   alternatives.remove:
     - name: datagriphome
-    - path: {{ datagrip.pkg.archive.path }}
+    - path: {{ datagrip.dir.path }}
     - onlyif: update-alternatives --get-selections |grep ^datagriphome
 
 
 datagrip-linuxenv-executable-alternatives-clean:
   alternatives.remove:
     - name: datagrip
-    - path: {{ datagrip.pkg.archive.path }}/datagrip
+    - path: {{ datagrip.dir.path }}/{{ datagrip.command }}
     - onlyif: update-alternatives --get-selections |grep ^datagrip
 
         {%- else %}

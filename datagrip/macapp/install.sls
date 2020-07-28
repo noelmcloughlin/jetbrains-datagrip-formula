@@ -14,8 +14,10 @@ datagrip-macos-app-install-curl:
   pkg.installed:
     - name: curl
   cmd.run:
-    - name: curl -Lo {{ datagrip.dir.tmp }}/datagrip-{{ datagrip.version }} {{ datagrip.pkg.macapp.source }}
-    - unless: test -f {{ datagrip.dir.tmp }}/datagrip-{{ datagrip.version }}
+    - name: curl -Lo {{ datagrip.dir.tmp }}/datagrip-{{ datagrip.version }} "{{ datagrip.pkg.macapp.source }}"
+    - unless:
+      - test -f {{ datagrip.dir.tmp }}/datagrip-{{ datagrip.version }}
+      - test -d {{ datagrip.dir.path }}/{{ datagrip.pkg.name }}{{ '' if not datagrip.edition else ' %sE'|format(datagrip.edition) }}  # noqa 204
     - require:
       - file: datagrip-macos-app-install-curl
       - pkg: datagrip-macos-app-install-curl
@@ -49,17 +51,21 @@ datagrip-macos-app-install-macpackage:
     - onchanges:
       - cmd: datagrip-macos-app-install-curl
   file.managed:
-    - name: /tmp/mac_shortcut.sh
-    - source: salt://datagrip/files/mac_shortcut.sh
+    - name: /tmp/mac_shortcut.sh.jinja
+    - source: salt://datagrip/files/mac_shortcut.sh.jinja
     - mode: 755
     - template: jinja
     - context:
-      appname: {{ datagrip.pkg.name }}
-      edition: {{ '' if 'edition' not in datagrip else datagrip.edition }}
+      appname: {{ datagrip.dir.path }}/{{ datagrip.pkg.name }}
+      edition: {{ '' if not datagrip.edition else ' %sE'|format(datagrip.edition) }}
       user: {{ datagrip.identity.user }}
       homes: {{ datagrip.dir.homes }}
+    - require:
+      - macpackage: datagrip-macos-app-install-macpackage
+    - onchanges:
+      - macpackage: datagrip-macos-app-install-macpackage
   cmd.run:
-    - name: /tmp/mac_shortcut.sh
+    - name: /tmp/mac_shortcut.sh.jinja
     - runas: {{ datagrip.identity.user }}
     - require:
       - file: datagrip-macos-app-install-macpackage

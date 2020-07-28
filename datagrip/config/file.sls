@@ -28,12 +28,7 @@ datagrip-config-file-managed-config_file:
     - makedirs: True
     - template: jinja
     - context:
-              {%- if datagrip.pkg.use_upstream_macapp %}
-        path: {{ datagrip.pkg.macapp.path }}
-              {%- else %}
-        path: {{ datagrip.pkg.archive.path }}
-              {%- endif %}
-        config: {{ datagrip.config|json }}
+      config: {{ datagrip.config|json }}
     - require:
       - sls: {{ sls_package_install }}
 

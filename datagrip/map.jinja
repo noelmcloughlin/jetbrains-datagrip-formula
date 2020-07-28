@@ -19,24 +19,20 @@
 
 {%- set edition = '' if 'edition' not in d else d.edition %}
 {%- set pcode = d.product ~ edition %}
-{%- set jdata = salt['cmd.run']('curl -s -L {0}{1}'.format(d.pkg.archive.uri, pcode))|load_yaml %}
+{%- set jdata = salt['cmd.run']('curl -s -L "{0}{1}"'.format(d.pkg.uri, pcode))|load_yaml %}
 {%- do d.update({ 'version': jdata[ pcode ][0]['version'] }) %}
 
-{%- set dirname = 'd-%s-%s'|format( edition, d.version) %}
+{%- set dirname = 'datagrip-%s-%s'|format( edition, d.version) %}
 {%- set url = jdata[ pcode ][0]['downloads'][ d.flavour ]['link'] %}
-{%- set hash  = salt['cmd.run']('curl -L -s {0}'.format( jdata[ pcode ][0]['downloads'][ d.flavour ]['checksumLink'])).split(' ')[0] %}  # noqa 204
+{%- set hash  = salt['cmd.run']('curl -L -s "{0}"'.format( jdata[ pcode ][0]['downloads'][ d.flavour ]['checksumLink'])).split(' ')[0] %}  # noqa 204
 
 {%- if d.pkg.use_upstream_archive %}
-    {%- do d.pkg.archive.update({'name': d.dir.archive ~ '/' ~ dirname,
-                                 'path': d.dir.archive ~ '/' ~ dirname,
-                                 'source': url,
-                                 'source_hash': hash }) %}
+    {%- do d.dir.update({'path': d.dir.archive ~ '/' ~ dirname}) %}
+    {%- do d.pkg.archive.update({'name': d.dir.archive ~ '/' ~ dirname, 'source': url, 'source_hash': hash }) %}
 {%- endif %}
 {%- if d.pkg.use_upstream_macapp %}
-    {%- do d.pkg.macapp.update({'name': '/Applications',
-                                'path': '/Applications',
-                                'source': url,
-                                'source_hash': hash }) %}
+    {%- do d.dir.update({'path': '/Applications'}) %}
+    {%- do d.pkg.macapp.update({'source': url, 'source_hash': hash }) %}
 {%- endif %}
 
 {%- set datagrip = d %}

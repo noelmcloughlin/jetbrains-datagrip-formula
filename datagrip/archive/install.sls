@@ -11,7 +11,7 @@ datagrip-package-archive-install:
     - require_in:
       - file: datagrip-package-archive-install
   file.directory:
-    - name: {{ datagrip.pkg.archive.path }}
+    - name: {{ datagrip.dir.path }}
     - user: {{ datagrip.identity.rootuser }}
     - group: {{ datagrip.identity.rootgroup }}
     - mode: 755
@@ -39,7 +39,7 @@ datagrip-package-archive-install:
 datagrip-archive-install-file-symlink-datagrip:
   file.symlink:
     - name: /usr/local/bin/datagrip
-    - target: {{ datagrip.pkg.archive.path }}/{{ datagrip.command }}
+    - target: {{ datagrip.dir.path }}/{{ datagrip.command }}
     - force: True
     - onlyif: {{ grains.kernel|lower != 'windows' }}
     - require:

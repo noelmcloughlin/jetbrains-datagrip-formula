@@ -5,8 +5,12 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import datagrip with context %}
 
-datagrip-package-archive-clean-file-absent:
+d-package-archive-clean-file-absent:
   file.absent:
     - names:
-      - {{ datagrip.pkg.archive.path }}
-      - /usr/local/jetbrains/datagrip-*
+      - {{ datagrip.dir.tmp }}
+             {%- if grains.os == 'MacOS' %}
+      - {{ datagrip.dir.path }}/{{ datagrip.pkg.name }}*{{ datagrip.edition }}*.app
+             {%- else %}
+      - {{ datagrip.dir.path }}
+             {%- endif %}
