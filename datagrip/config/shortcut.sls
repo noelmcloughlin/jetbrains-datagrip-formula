@@ -5,7 +5,7 @@
 {%- from tplroot ~ "/map.jinja" import datagrip with context %}
 {%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
 
-{%- if datagrip.linux.install_desktop_file %}
+{%- if datagrip.shortcut.install %}
     {%- if datagrip.pkg.use_upstream_macapp %}
         {%- set sls_package_install = tplroot ~ '.macapp.install' %}
     {%- else %}
@@ -17,7 +17,7 @@ include:
 
 datagrip-config-file-file-managed-desktop-shortcut_file:
   file.managed:
-    - name: {{ datagrip.linux.desktop_file }}
+    - name: {{ datagrip.shortcut.file }}
     - source: {{ files_switch(['shortcut.desktop.jinja'],
                               lookup='datagrip-config-file-file-managed-desktop-shortcut_file'
                  )
