@@ -14,7 +14,7 @@ datagrip-formula
    :scale: 100%
    :target: https://github.com/semantic-release/semantic-release
 
-Formula to install Datagrip on GNU/Linux and MacOS.
+Formula to install Datagrip on Windows, GNU/Linux and MacOS.
 
 .. contents:: **Table of Contents**
    :depth: 1

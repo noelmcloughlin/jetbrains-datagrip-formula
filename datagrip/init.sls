@@ -4,7 +4,7 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import datagrip with context %}
 
-    {%- if grains.kernel|lower in ('linux', 'darwin',) %}
+    {%- if grains.kernel|lower in ('windows', 'linux', 'darwin',) %}
 
 include:
   - {{ '.macapp' if datagrip.pkg.use_upstream_macapp else '.archive' }}
