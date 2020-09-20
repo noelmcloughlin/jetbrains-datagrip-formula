@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`1.1.0 <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/compare/v1.0.2...v1.1.0>`_ (2020-09-20)
+--------------------------------------------------------------------------------------------------------------------
+
+Features
+^^^^^^^^
+
+
+* **windows:** basic windows support (\ `9e1ebf4 <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/commit/9e1ebf45225808ec07b5a97130763a5142d93fba>`_\ )
+
 `1.0.2 <https://github.com/saltstack-formulas/jetbrains-datagrip-formula/compare/v1.0.1...v1.0.2>`_ (2020-07-28)
 --------------------------------------------------------------------------------------------------------------------
 
