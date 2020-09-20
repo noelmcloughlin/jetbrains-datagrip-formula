@@ -78,7 +78,7 @@ datagrip-archive-install-file-shortcut-datagrip:
     - name: C:\Users\{{ datagrip.identity.rootuser }}\Desktop\{{ datagrip.dirname }}.lnk
     - target: {{ datagrip.dir.archive }}\{{ datagrip.dirname }}\{{ datagrip.command }}
     - working_dir: {{ datagrip.dir.archive }}\{{ datagrip.dirname }}\bin
-    - icon_location: {{ datagrip.dir.archive }}\{{ datagrip.dirname }}\bin\datagrip.ico
+    - icon_location: {{ datagrip.dir.archive }}\{{ datagrip.dirname }}\bin\datagrip64.exe
     - makedirs: True
     - force: True
     - user: {{ datagrip.identity.rootuser }}
